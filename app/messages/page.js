@@ -14,7 +14,9 @@ export default async function MessagesPage() {
   // 3️⃣ unstable_noStore() 함수를 사용하여 특정 컴포넌트에서만 캐싱을 비활성화
   // ✅ 파일 전체가 아닌 이 MessagesPage 컴포넌트에서만 캐싱이 비활성화되는 효과
   // unstable_noStore();
-  const response = await fetch("http://localhost:8080/messages");
+  const response = await fetch("http://localhost:8080/messages", {
+    next: { tags: ["msg"] },
+  });
   const messages = await response.json();
 
   if (!messages || messages.length === 0) {
